@@ -1,0 +1,65 @@
+{
+  "name": "bard-instruments",
+  "version": "0.0.1",
+  "description": "Useful utilities for JS/SPA/Mobx/React web applications",
+  "main": "index.js",
+  "scripts": {
+    "build:js": "babel src --out-dir lib --extensions '.ts,.tsx,.js' --ignore '**/*.spec.ts'",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build": "npm run build:types && npm run build:js",
+    "lint": "eslint src --quiet",
+    "prepare": "NODE_ENV=production && npm run build",
+    "tag-release": "npm test && standard-version",
+    "test-unit": "jest",
+    "test": "jest",
+    "type-check:watch": "npm run type-check -- --watch",
+    "type-check": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AoDev/bard-instruments.git"
+  },
+  "author": "Kevin Purnelle <kevin.purnelle@gmail.com> (http://kevinpurnelle.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AoDev/bard-instruments/issues"
+  },
+  "homepage": "https://github.com/AoDev/bard-instruments#readme",
+  "devDependencies": {
+    "@babel/cli": "7.5.5",
+    "@babel/core": "7.5.5",
+    "@babel/plugin-proposal-class-properties": "7.5.5",
+    "@babel/plugin-proposal-decorators": "7.4.4",
+    "@babel/plugin-proposal-object-rest-spread": "7.5.5",
+    "@babel/plugin-transform-runtime": "7.5.5",
+    "@babel/preset-env": "7.5.5",
+    "@babel/preset-react": "7.0.0",
+    "@babel/preset-typescript": "7.3.3",
+    "@babel/runtime": "7.5.5",
+    "@types/jest": "24.0.17",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "10.0.2",
+    "babel-jest": "24.8.0",
+    "babel-plugin-module-resolver": "3.2.0",
+    "enzyme": "3.10.0",
+    "enzyme-adapter-react-16": "1.14.0",
+    "eslint": "5.7.0",
+    "eslint-config-standard": "12.0.0",
+    "eslint-plugin-import": "2.18.2",
+    "eslint-plugin-node": "7.0.1",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-react": "7.14.3",
+    "eslint-plugin-standard": "4.0.0",
+    "jest": "24.8.0",
+    "lodash": "4.17.15",
+    "mobx": "5.13.0",
+    "mobx-react": "5.4.3",
+    "react": "16.8.3",
+    "react-dom": "16.8.3",
+    "standard-version": "5.0.1",
+    "typescript": "3.5.3"
+  },
+  "peerDependencies": {
+    "lodash": "4.x"
+  }
+}
