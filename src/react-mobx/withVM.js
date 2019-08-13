@@ -76,7 +76,7 @@ function getComponentDisplayName (Component) {
  * @param {function(props): vmProps} options.inject called with props from parent and rootStore
  * @param {function(vmProps): void=} options.destroyVM called when component unmounts
  */
-export function withVM (Component, options = {}) {
+export default function withVM (Component, options = {}) {
   const ObserverComponent = mobxReact.observer(Component)
 
   class VMProvider extends React.Component {
@@ -133,8 +133,4 @@ export function withVM (Component, options = {}) {
   }
 
   return mobxReact.inject('rootStore')(VMProvider)
-}
-
-export default {
-  withVM,
 }

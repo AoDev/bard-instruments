@@ -22,7 +22,7 @@
  // It depends on the queue state. (no current running job)
  ```
  */
-class RateLimitPromiseQueue {
+export default class RateLimitPromiseQueue {
   [k: string]: any
   currentJob: () => any
   jobs: (() => Promise<any>)[]
@@ -79,5 +79,3 @@ class RateLimitPromiseQueue {
     this._finishJob = this._finishJob.bind(this)
   }
 }
-
-export default RateLimitPromiseQueue
