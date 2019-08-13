@@ -25,12 +25,11 @@ module.exports = {
       '@babel/preset-env',
       {
         'targets': {
-          'chrome': 61,
           'node': 8,
-          'electron': '2.0.9'
+          'browsers': '> 5%',
         },
         'modules': 'commonjs',
-        'useBuiltIns': 'usage'
+        'useBuiltIns': false
       }
     ],
     '@babel/typescript',
