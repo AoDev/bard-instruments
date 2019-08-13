@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/AoDev/bard-instruments.svg?branch=master)](https://travis-ci.org/AoDev/bard-instruments) ![Node support](https://img.shields.io/badge/node-%3E%3D%2010.0.0-brightgreen)
+
 # bard-instruments
 Utilities for every day development challenges in JS/SPA/Mobx/React web applications.
 

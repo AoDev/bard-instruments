@@ -25,7 +25,7 @@ module.exports = {
       '@babel/preset-env',
       {
         'targets': {
-          'node': 8,
+          'node': 10,
           'browsers': '> 5%',
         },
         'modules': 'commonjs',
@@ -45,7 +45,7 @@ module.exports = {
           '@babel/preset-env',
           {
             'targets': {
-              'node': 8,
+              'node': 10,
             },
             'modules': 'commonjs'
           }
