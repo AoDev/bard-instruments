@@ -37,6 +37,7 @@ function getComponentDisplayName (Component) {
  *
  * Usage example of the #1 opiniated way:
  * - The business data and logic is available through a "root store".
+ *   [Mobx docs](https://mobx.js.org/best/store.html#combining-multiple-stores)
  * - This root store is provided as a prop called "rootStore" in React Context.
  *   For example using mobx-react Provider: `<Provider rootStore={rootStore}><App/></Provider>`
  * - Design the VM with the following characteristics:
