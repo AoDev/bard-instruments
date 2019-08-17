@@ -13,15 +13,19 @@ Utilities for every day development challenges in JS/SPA/Mobx/React web applicat
 ### Install
 ```shell
 npm install bard-instruments
-npm install lodash@4 
+npm install lodash@4
 ```
 
-### Require
-All utils are in their own module under /lib.
+### Require / import
+All utils are in their own module under /lib. Many of them work both in Nodejs and browser.  
+Importing is different if you use ES6 or CJS.
 
 Example:
 ```js
-const RateLimitPromiseQueue = require('bard-instruments/lib/async/RateLimitPromiseQueue')
+// Node / cjs
+const RateLimitPromiseQueue = require('bard-instruments/lib/async/RateLimitPromiseQueue').default
+// ES6
+import RateLimitPromiseQueue from 'bard-instruments/lib/async/RateLimitPromiseQueue'
 
 const promiseQueue = new RateLimitPromiseQueue({minTimeBetweenTasks: 1000})
 ```
