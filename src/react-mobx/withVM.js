@@ -16,33 +16,49 @@ function getComponentDisplayName (Component) {
 }
 
 /**
- * withVM is a higher order component that allows to easily keep separated
+ * `withVM` is a higher order component that allows to easily keep separated
  * the definition of a component internal state and its actual view (render) part.
  *
  * Thinking in terms of React/Mobx patterns,
  * it can be viewed as a convenient HOC that creates "smart" or "container" components with extras.
  *
- * What it does technically:
- * - it turns the component it receives as first argument into Observer
- * - instantiates the observable component state VM, passing the rootStore by default.
- *   You can define your own custom inject fn.
+ * As a reminder, a `vm` or view-model, is an entity responsible for taking the system business
+ * data and use cases and make them available to a user interface, such as a view.
+ * In general, using these VM is recommended for top-level sections such as feature pages
+ * or stand-alone "widgets".
  *
- * Example:
+ * What `withVM` does technically:
+ * - it turns the component it receives as first argument into mobx Observer.
+ * - it instantiates a VM when the component is mounted and pass it to the component.
+ *
+ * Then, there are two ways to provide the business `app stores` to the vm / component:
+ * - #1: The simple opiniated way (recommended)
+ * - #2: For flexibility, custom inject / destroy functions can be passed.
+ *
+ * Usage example of the #1 opiniated way:
+ * - The business data and logic is available through a "root store".
+ * - This root store is provided as a prop called "rootStore" in React Context.
+ *   For example using mobx-react Provider: `<Provider rootStore={rootStore}><App/></Provider>`
+ * - Design the VM with the following characteristics:
+ *   - the VM constructor expects an object as argument, one property being `rootStore`.
+ *   - if necessary, a `destroyVM` method can be defined for cleanup. (automatically called on unmount)
+ *
+ * Pseudo code snippets:
  * ```
  * // UserFormComponent.js
- * class UserFormComponent extends React.Component {
- *   render (props) {
- *     const {vm} = props
- *     return (
- *       <div>
- *         <input value={vm.name}/>
- *         <input value={vm.email}/>
- *       </div>
- *     )
- *   }
+ * function UserFormComponent (props) {
+ *   const {vm} = props
+ *   return (
+ *     <div>
+ *       <input value={vm.name}/>
+ *       <input value={vm.email}/>
+ *     </div>
+ *   )
  * }
  *
+ * // ----------------
  * // UserFormWithVM.js
+ * import withVM from 'bard-instruments/lib/react-mobx/withVM'
  * import UserFormComponent from './UserFormComponent'
  *
  * class UserFormVM {
@@ -53,6 +69,10 @@ function getComponentDisplayName (Component) {
  *     this[prop] = value
  *   }
  *
+ *   destroyVM () {
+ *     // can be optionally defined if cleanup necessary
+ *   }
+ *
  *   constructor ({rootStore}) {
  *     // do something with rootStore
  *   }
@@ -60,9 +80,9 @@ function getComponentDisplayName (Component) {
  *
  * export default withVM(UserFormComponent, UserForm)
  *
- *
+ * // ----------------
  * // App
- * import UserFormVM
+ * import UserFormVM from './UserFormVM'
  * function App {
  *   return (
  *     <div>
@@ -71,6 +91,7 @@ function getComponentDisplayName (Component) {
  *   )
  * }
  * ```
+ *
  * @param {function} Component - React component that will be decorated
  * @param {(object|function)} options - Either custom inject, or Observable state VM class.
  * @param {function(props): vmProps} options.inject called with props from parent and rootStore
