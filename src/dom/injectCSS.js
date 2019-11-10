@@ -16,7 +16,7 @@ function injectCSS (id, css, options = {}) {
   }
   else {
     // new element
-    let newStyle = document.createElement('style')
+    const newStyle = document.createElement('style')
     newStyle.setAttribute('type', 'text/css')
     newStyle.setAttribute('id', styleId)
     newStyle.textContent = css
