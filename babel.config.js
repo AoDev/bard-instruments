@@ -18,7 +18,12 @@ module.exports = {
         'loose': true
       }
     ],
-    // ['@babel/plugin-transform-runtime']
+    [
+      'add-module-exports',
+      {
+        'addDefaultProperty': true
+      }
+    ],
   ],
   'presets': [
     [
@@ -26,10 +31,10 @@ module.exports = {
       {
         'targets': {
           'node': 10,
-          'browsers': '> 5%',
         },
         'modules': 'commonjs',
-        'useBuiltIns': false
+        'useBuiltIns': 'usage',
+        corejs: 3,
       }
     ],
     '@babel/typescript',

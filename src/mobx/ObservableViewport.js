@@ -15,7 +15,7 @@ const {observable, action} = mobx
  * Create a global UIStore and instantiate the observable viewport.
  * Now you can easily implement responsive / progressive features in your UI components.
  */
-export class ObservableViewport {
+class ObservableViewport {
   static getViewPortSize () {
     return {
       width: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),

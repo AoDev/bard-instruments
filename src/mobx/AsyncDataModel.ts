@@ -35,7 +35,7 @@ const {observable, action} = mobx
  }
  ```
  */
-export class AsyncDataModel {
+class AsyncDataModel {
   [k: string]: any
 
   isUpdating = false
