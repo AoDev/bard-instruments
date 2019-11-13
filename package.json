@@ -15,6 +15,7 @@
     "type-check:watch": "npm run type-check -- --watch",
     "type-check": "tsc --noEmit"
   },
+  "types": "./lib/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AoDev/bard-instruments.git"
@@ -37,6 +38,7 @@
     "@babel/preset-typescript": "7.3.3",
     "@babel/runtime": "7.5.5",
     "@types/jest": "24.0.22",
+    "@types/lodash": "4.14.146",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "10.0.3",
     "babel-jest": "24.9.0",

@@ -1,13 +1,19 @@
 export const ONE_MINUTE = 60 * 1000
 export const ONE_HOUR = 60 * ONE_MINUTE
 
+interface timeDistance  {
+  hours: number,
+  minutes: number,
+  seconds: number,
+}
+
 /**
  * Returns number of hours, minutes, seconds between two timestamps
  * @param {Number} fromTime timestamp (in ms)
  * @param {Number} toTime timestamp (in ms)
- * @returns {{hours: number, minutes: number, seconds: number}}
+ * @returns {timeDistance}
  */
-export function timeBetween (fromTime: number, toTime: number) {
+export function timeBetween (fromTime: number, toTime: number) : timeDistance {
   let _fromTime = fromTime
   let _toTime = toTime
   if (fromTime < toTime) {
@@ -24,8 +30,9 @@ export function timeBetween (fromTime: number, toTime: number) {
 
 /**
  * @param {number} timestampInMs
+ * @returns {number}
  */
-export function roundToNearestSecond (timestampInMs: number) {
+export function roundToNearestSecond (timestampInMs: number) : number {
   return Math.round(timestampInMs / 1000) * 1000
 }
 
@@ -33,14 +40,14 @@ export function roundToNearestSecond (timestampInMs: number) {
  * Same as Date.now(), but rounded to entire second.
  * @returns {number}
  */
-export function nowRounded () {
+export function nowRounded (): number {
   return roundToNearestSecond(Date.now())
 }
 
 /**
  * @returns {number} next hour timestamp
  */
-export function nextHourTimestamp () {
+export function nextHourTimestamp (): number {
   return roundToInterval1h(Date.now() + ONE_HOUR)
 }
 
@@ -48,7 +55,7 @@ export function nextHourTimestamp () {
  * @param {number} timestamp
  * @returns {number}
  */
-export function roundToInterval1s (timestamp: number) {
+export function roundToInterval1s (timestamp: number): number {
   return timestamp - (timestamp % 1000)
 }
 
@@ -56,7 +63,7 @@ export function roundToInterval1s (timestamp: number) {
  * @param {number} timestamp
  * @returns {number}
  */
-export function roundToInterval5s (timestamp: number) {
+export function roundToInterval5s (timestamp: number): number {
   return timestamp - (timestamp % 5000)
 }
 
@@ -64,7 +71,7 @@ export function roundToInterval5s (timestamp: number) {
  * @param {number} timestamp
  * @returns {number}
  */
-export function roundToInterval10s (timestamp: number) {
+export function roundToInterval10s (timestamp: number): number {
   return timestamp - (timestamp % 10000)
 }
 
@@ -72,7 +79,7 @@ export function roundToInterval10s (timestamp: number) {
  * @param {number} timestamp
  * @returns {number}
  */
-export function roundToInterval30s (timestamp: number) {
+export function roundToInterval30s (timestamp: number): number {
   return timestamp - (timestamp % 30000)
 }
 
@@ -80,7 +87,7 @@ export function roundToInterval30s (timestamp: number) {
  * @param {number} timestamp
  * @returns {number}
  */
-export function roundToInterval1m (timestamp: number) {
+export function roundToInterval1m (timestamp: number): number {
   return timestamp - (timestamp % 60000)
 }
 
@@ -88,7 +95,7 @@ export function roundToInterval1m (timestamp: number) {
  * @param {number} timestamp
  * @returns {number}
  */
-export function roundToInterval1h (timestamp: number) {
+export function roundToInterval1h (timestamp: number): number {
   return timestamp - (timestamp % ONE_HOUR)
 }
 

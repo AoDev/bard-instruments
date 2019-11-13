@@ -1,3 +1,7 @@
+interface dictionnary {
+  [key: string]: any
+}
+
 /**
  * Inject css rules into the document head
  * @param {String} id - identifies the set of rules so that it can be removed later
@@ -5,7 +9,7 @@
  * @param {*} options
  * @param {Boolean} options.prepend - influence CSS priority. Add it as first/last element of <head>
  */
-function injectCSS (id, css, options = {}) {
+function injectCSS (id: string, css: string, options: dictionnary = {prepend: true}) : void {
   const head = document.querySelector('head')
   const styleId = `#style-${id}`
   const styleElement = document.getElementById(styleId)

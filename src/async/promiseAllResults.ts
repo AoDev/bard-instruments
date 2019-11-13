@@ -3,9 +3,9 @@
  * regardless of failure or success.
  * It always resolves. Failed promises errors will be caught and assigned as value.
  * @param {[Promise]} promises
- * @returns {Promise<[Promise]>} - [ResolvedPromise1, RejectedPromise2]
+ * @returns {Promise<[any]>} - [ResolvedPromise1, RejectedPromise2]
  */
-function promiseAllResults (promises) {
+function promiseAllResults (promises: Promise<any>[]) {
   return Promise.all(promises.map((promise) => promise.catch((err) => err)))
 }
 
