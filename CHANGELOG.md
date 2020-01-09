@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/AoDev/bard-instruments/compare/v0.0.5...v1.0.0) (2020-01-09)
+
+
+### Features
+
+* **timeUtils:** add 5m, 15m, 1h round functions. ([3412698](https://github.com/AoDev/bard-instruments/commit/3412698e3609ada0f249f3b7e952bc31b036744b))
+
 ### [0.0.5](https://github.com/AoDev/bard-instruments/compare/v0.0.4...v0.0.5) (2019-11-13)
 
 ### [0.0.4](https://github.com/AoDev/bard-instruments/compare/v0.0.3...v0.0.4) (2019-11-10)
