@@ -53,6 +53,14 @@ export function nextHourTimestamp (): number {
 
 /**
  * @param {number} timestamp
+ * @param {number} intervalInMs
+ */
+export function roundTimeToInterval (timestamp: number, intervalInMs: number): number {
+  return timestamp - (timestamp % intervalInMs)
+}
+
+/**
+ * @param {number} timestamp
  * @returns {number}
  */
 export function roundToInterval1s (timestamp: number): number {
@@ -95,6 +103,22 @@ export function roundToInterval1m (timestamp: number): number {
  * @param {number} timestamp
  * @returns {number}
  */
+export function roundToInterval5m (timestamp: number): number {
+  return timestamp - (timestamp % 300000)
+}
+
+/**
+ * @param {number} timestamp
+ * @returns {number}
+ */
+export function roundToInterval15m (timestamp: number): number {
+  return timestamp - (timestamp % 900000)
+}
+
+/**
+ * @param {number} timestamp
+ * @returns {number}
+ */
 export function roundToInterval1h (timestamp: number): number {
   return timestamp - (timestamp % ONE_HOUR)
 }
@@ -106,6 +130,9 @@ const roundToInterval = {
   '10s': roundToInterval10s,
   '30s': roundToInterval30s,
   '1m': roundToInterval1m,
+  '5m': roundToInterval5m,
+  '15m': roundToInterval15m,
+  '1h': roundToInterval1h,
 }
 
 export default {
@@ -120,5 +147,8 @@ export default {
   roundToInterval10s,
   roundToInterval30s,
   roundToInterval1m,
+  roundToInterval5m,
+  roundToInterval15m,
+  roundToInterval1h,
   roundToInterval,
 }
