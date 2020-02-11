@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/AoDev/bard-instruments/compare/v1.0.0...v1.0.1) (2020-02-11)
+
+
+### Bug Fixes
+
+* exports of AsyncDataModel and ObservableViewport ([558b2d3](https://github.com/AoDev/bard-instruments/commit/558b2d3465e755051ba5ec93ba1e4b5cb67687e5))
+
 ## [1.0.0](https://github.com/AoDev/bard-instruments/compare/v0.0.5...v1.0.0) (2020-01-09)
 
 
