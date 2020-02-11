@@ -44,7 +44,9 @@ class ObservableViewport {
   }
 }
 
-export default mobx.decorate(ObservableViewport, {
+mobx.decorate(ObservableViewport, {
   size: observable.ref,
   updateViewportSize: action.bound,
 })
+
+export default ObservableViewport

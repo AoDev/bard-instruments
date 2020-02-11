@@ -86,7 +86,7 @@ class AsyncDataModel {
   }
 }
 
-export default mobx.decorate(AsyncDataModel, {
+mobx.decorate(AsyncDataModel, {
   // props
   isUpdating: observable,
   data: observable.ref,
@@ -97,3 +97,5 @@ export default mobx.decorate(AsyncDataModel, {
   set: action.bound,
   assign: action.bound,
 })
+
+export default AsyncDataModel
