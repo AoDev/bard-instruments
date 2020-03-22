@@ -78,9 +78,9 @@ class AsyncDataModel {
   }
 
   /**
-   * @param {{data?: *, fetchHandler: function}} options
+   * @param {{data?: *, fetchHandler: () => Promise<any>}} options
    */
-  constructor (options: { data?: any; fetchHandler: (...args: any) => any }) {
+  constructor (options: { data?: any; fetchHandler: (...args: any) => Promise<any> }) {
     this.fetchHandler = options.fetchHandler
     this.data = options.data
   }
