@@ -1,6 +1,6 @@
 {
   "name": "bard-instruments",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Useful utilities for JS/SPA/Mobx/React web applications",
   "main": "index.js",
   "scripts": {
