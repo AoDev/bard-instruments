@@ -101,7 +101,7 @@ function getComponentDisplayName (Component) {
 export default function withVM (Component, options = {}) {
   const ObserverComponent = mobxReact.observer(Component)
 
-  class VMProvider extends React.Component {
+  class VMProvider extends React.PureComponent {
     static displayName = `${getComponentDisplayName(Component)}WithVM`
     static propTypes = {
       rootStore: PropTypes.object.isRequired,
