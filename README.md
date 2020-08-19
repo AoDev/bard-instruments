@@ -76,6 +76,12 @@ Expose observable properties of the browser viewport.
 * `/withVM`  
 Higher order component that allows to connect easily a [mobx root store](https://mobx.js.org/best/store.html#combining-multiple-stores) to a component via React context api.
 
+* `/withVM2`  
+Same as withVM but newer implementation using mobx-react@6 and React hooks.  
+This one does not have a custom injection option like _withVM_ but this could be added in the future.
+
+Choose one based on your current dependencies.
+
 ## Part of the "Bard ecosystem"
 I am developing an ecosystem to easily build frontend apps based on React and Mobx.
 The utils are loosely related to each other, so that they can be shared in javascript projects, especially in the "Bard ecosystem".
