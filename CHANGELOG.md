@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/AoDev/bard-instruments/compare/v1.0.2...v1.1.0) (2020-08-19)
+
+
+### Features
+
+* **withVM2:** add hook version of withVM ([2f7d2f7](https://github.com/AoDev/bard-instruments/commit/2f7d2f76d55a8b26d9d647df09fd4c988585438e))
+
 ### [1.0.2](https://github.com/AoDev/bard-instruments/compare/v1.0.1...v1.0.2) (2020-03-22)
 
 ### [1.0.1](https://github.com/AoDev/bard-instruments/compare/v1.0.0...v1.0.1) (2020-02-11)
