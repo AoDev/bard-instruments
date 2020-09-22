@@ -1,7 +1,8 @@
-export const ONE_MINUTE = 60 * 1000
-export const ONE_HOUR = 60 * ONE_MINUTE
+export const ONE_MINUTE = 60000
+export const ONE_HOUR = 3600000
+export const ONE_DAY = 86400000
 
-interface timeDistance  {
+interface timeDistance {
   hours: number,
   minutes: number,
   seconds: number,
@@ -123,6 +124,22 @@ export function roundToInterval1h (timestamp: number): number {
   return timestamp - (timestamp % ONE_HOUR)
 }
 
+/**
+ * @param {number} timestamp
+ * @returns {number}
+ */
+export function roundToInterval4h (timestamp: number): number {
+  return timestamp - (timestamp % 14400000)
+}
+
+/**
+ * @param {number} timestamp
+ * @returns {number}
+ */
+export function roundToInterval1d (timestamp: number): number {
+  return timestamp - (timestamp % ONE_DAY)
+}
+
 // indexed helper
 const roundToInterval = {
   '1s': roundToInterval1s,
@@ -133,11 +150,14 @@ const roundToInterval = {
   '5m': roundToInterval5m,
   '15m': roundToInterval15m,
   '1h': roundToInterval1h,
+  '4h': roundToInterval4h,
+  '1d': roundToInterval1d,
 }
 
 export default {
   ONE_MINUTE,
   ONE_HOUR,
+  ONE_DAY,
   timeBetween,
   roundToNearestSecond,
   nextHourTimestamp,
@@ -150,5 +170,7 @@ export default {
   roundToInterval5m,
   roundToInterval15m,
   roundToInterval1h,
+  roundToInterval4h,
+  roundToInterval1d,
   roundToInterval,
 }

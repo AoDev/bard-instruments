@@ -37,9 +37,16 @@ describe('timeUtils', () => {
       expect(timeUtils.roundToInterval5s(1568840444505)).toBe(1568840440000)
       expect(timeUtils.roundToInterval10s(1568840441000)).toBe(1568840440000)
       expect(timeUtils.roundToInterval30s(1568840441234)).toBe(1568840430000)
+
+      // = Wednesday, 18 September 2019 21:00:44.999 UTC
       expect(timeUtils.roundToInterval1m(1568840444999)).toBe(1568840400000)
       expect(timeUtils.roundToInterval5m(1568840444999)).toBe(1568840400000)
       expect(timeUtils.roundToInterval15m(1568840444999)).toBe(1568840400000)
+
+      // = Wednesday, 18 September 2019 21:37:59 UTC
+      expect(timeUtils.roundToInterval1h(1568842679000)).toBe(1568840400000)
+      expect(timeUtils.roundToInterval4h(1568842679000)).toBe(1568836800000)
+      expect(timeUtils.roundToInterval1d(1568842679000)).toBe(1568764800000)
 
       // Checking that indexed export is there too.
       expect(timeUtils.roundToInterval['1s']).toBe(timeUtils.roundToInterval1s)
@@ -49,6 +56,9 @@ describe('timeUtils', () => {
       expect(timeUtils.roundToInterval['1m']).toBe(timeUtils.roundToInterval1m)
       expect(timeUtils.roundToInterval['5m']).toBe(timeUtils.roundToInterval5m)
       expect(timeUtils.roundToInterval['15m']).toBe(timeUtils.roundToInterval15m)
+      expect(timeUtils.roundToInterval['1h']).toBe(timeUtils.roundToInterval1h)
+      expect(timeUtils.roundToInterval['4h']).toBe(timeUtils.roundToInterval4h)
+      expect(timeUtils.roundToInterval['1d']).toBe(timeUtils.roundToInterval1d)
     })
   })
 })
