@@ -30,10 +30,11 @@ export default class RateLimitPromiseQueue {
   minTimeBetweenTasks: number
 
   /**
-   * @param {() => Promise} task function that returns a promise
-   * @returns {Promise}
+   * @template T
+   * @param {() => Promise<T>} task function that returns a promise
+   * @returns {Promise<T>}
    */
-  add (task: (...args: any) => Promise<any>): Promise<any> {
+  add<T> (task: (...args: any) => Promise<T>): Promise<T> {
     return new Promise((resolve, reject) => {
       this.jobs.push(() => {
         return task().then(resolve, reject).finally(this._finishJob)
