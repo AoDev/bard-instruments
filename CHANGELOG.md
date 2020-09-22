@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/AoDev/bard-instruments/compare/v1.2.1...v2.0.0) (2020-09-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* **timeUtils:** To allow a simple import in Nodejs with the default export,
+named exports of timeUtils had to be removed.
+
+* **timeUtils:** remove named exports ([595e0c6](https://github.com/AoDev/bard-instruments/commit/595e0c66776130fd411d6108081a5c47d9826dab))
+
 ### [1.2.1](https://github.com/AoDev/bard-instruments/compare/v1.2.0...v1.2.1) (2020-09-22)
 
 ## [1.2.0](https://github.com/AoDev/bard-instruments/compare/v1.1.0...v1.2.0) (2020-09-22)
