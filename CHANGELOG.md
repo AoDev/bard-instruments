@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/AoDev/bard-instruments/compare/v2.0.0...v2.1.0) (2020-10-03)
+
+
+### Features
+
+* **time:** add simple Scheduler + add more timeUnits ([322f76e](https://github.com/AoDev/bard-instruments/commit/322f76e1a055ee8b262f829694fd7a4b9ed318ce))
+
 ## [2.0.0](https://github.com/AoDev/bard-instruments/compare/v1.2.1...v2.0.0) (2020-09-22)
 
 
