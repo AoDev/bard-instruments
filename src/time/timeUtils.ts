@@ -2,6 +2,19 @@ const ONE_MINUTE = 60000
 const ONE_HOUR = 3600000
 const ONE_DAY = 86400000
 
+const timeUnits: {[key in 's'|'second'|'m'|'minute'|'h'|'hour'|'d'|'day'|'w'|'week']: number} = {
+  s: 1000,
+  second: 1000,
+  m: 60000,
+  minute: 60000,
+  h: 3600000,
+  hour: 3600000,
+  d: 86400000,
+  day: 86400000,
+  w: 604800000,
+  week: 604800000,
+}
+
 interface timeDistance {
   hours: number,
   minutes: number,
@@ -173,4 +186,6 @@ export default {
   roundToInterval4h,
   roundToInterval1d,
   roundToInterval,
+  roundTimeToInterval,
+  timeUnits,
 }
