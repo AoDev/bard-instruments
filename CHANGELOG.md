@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0-alpha.0](https://github.com/AoDev/bard-instruments/compare/v2.1.0...v3.0.0-alpha.0) (2021-02-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **withVM:** * withVM2 (hook version) has been moved to withVM.
+* support for older versions of React is thus removed.
+
+So if you had `import withVM2 ...` now it's just `import withVM ...`
+
+You can keep using bard-instruments v2 for older React versions.
+
+* **withVM:** will only support React versions > 16.8 (hooks) ([e08c87c](https://github.com/AoDev/bard-instruments/commit/e08c87cf0c00b25d863a1c2ca46daf6ec2d426a6))
+
 ## [2.1.0](https://github.com/AoDev/bard-instruments/compare/v2.0.0...v2.1.0) (2020-10-03)
 
 
