@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
  * Tries to determine a Component's name
  * @param {function} Component
  */
-function getComponentDisplayName (Component) {
+function getComponentDisplayName(Component) {
   return (
     Component.displayName ||
     Component.name ||
@@ -98,7 +98,7 @@ function getComponentDisplayName (Component) {
  * @param {function(props): vmProps} options.inject called with props from parent and rootStore
  * @param {function(vmProps): void=} options.destroyVM called when component unmounts
  */
-export default function withVM (Component, options = {}) {
+export default function withVM(Component, options = {}) {
   const ObserverComponent = mobxReact.observer(Component)
 
   class VMProvider extends React.PureComponent {
@@ -112,7 +112,7 @@ export default function withVM (Component, options = {}) {
      * the rootStore is available in props through React context.
      * @param {*} props
      */
-    constructor (props) {
+    constructor(props) {
       super(props)
       /**
        * If a class (mobx store) is provided directly, it is instantiated.
@@ -120,20 +120,18 @@ export default function withVM (Component, options = {}) {
        */
       if (typeof options === 'function') {
         this.vmProps = {vm: new options(props)} // eslint-disable-line
-      }
-      /**
-       * If a custom inject function is provided, then it should return
-       * props that will be injected in the component.
-       */
-      else if (options.inject) {
+      } else if (options.inject) {
+        /**
+         * If a custom inject function is provided, then it should return
+         * props that will be injected in the component.
+         */
         this.vmProps = options.inject(props)
-      }
-      else {
+      } else {
         this.vmProps = {}
       }
     }
 
-    componentWillUnmount () {
+    componentWillUnmount() {
       /**
        * If a VM has a destroyVM method, it will be automatically called when unmount.
        */
@@ -149,8 +147,8 @@ export default function withVM (Component, options = {}) {
       }
     }
 
-    render () {
-      return <ObserverComponent {...this.props} {...this.vmProps}/>
+    render() {
+      return <ObserverComponent {...this.props} {...this.vmProps} />
     }
   }
 

@@ -8,13 +8,19 @@ describe('timeUtils', () => {
   describe('timeBetween()', () => {
     it('should return time in hours, minutes, seconds', () => {
       const now = Date.now()
-      const result = timeUtils.timeBetween(now, now + (4 * ONE_SECOND) + (10 * ONE_MINUTE) + (1 * ONE_HOUR))
+      const result = timeUtils.timeBetween(
+        now,
+        now + 4 * ONE_SECOND + 10 * ONE_MINUTE + 1 * ONE_HOUR
+      )
       expect(result).toEqual({hours: 1, minutes: 10, seconds: 4})
     })
 
     it('should return time in hours, minutes, seconds', () => {
       const now = Date.now()
-      const result = timeUtils.timeBetween(now + (4 * ONE_SECOND) + (10 * ONE_MINUTE) + (1 * ONE_HOUR), now)
+      const result = timeUtils.timeBetween(
+        now + 4 * ONE_SECOND + 10 * ONE_MINUTE + 1 * ONE_HOUR,
+        now
+      )
       expect(result).toEqual({hours: 1, minutes: 10, seconds: 4})
     })
 

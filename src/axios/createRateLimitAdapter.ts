@@ -14,7 +14,10 @@ import RateLimitPromiseQueue from '../async/RateLimitPromiseQueue'
  * @param adapter axios.defaults.adapter
  * @param options {minTimeBetweenRequests: 5000}
  */
-export default function createRateLimitAdapter (adapter: any, options: {minTimeBetweenRequests?: number}) {
+export default function createRateLimitAdapter(
+  adapter: any,
+  options: {minTimeBetweenRequests?: number}
+) {
   const minTimeBetweenTasks = options.minTimeBetweenRequests || 0
   const requestQueue = new RateLimitPromiseQueue({minTimeBetweenTasks})
 

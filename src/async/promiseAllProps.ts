@@ -9,7 +9,7 @@ import _values from 'lodash/values'
  * @param {PromiseMap} object - {'one': Promise1, 'two': Promise2}
  * @returns {Promise<PromiseMap>} - {'one': ResolvedPromise1, 'two': ResolvedPromise2}
  */
-async function promiseAllProps (object: {[key: string]: Promise<any>}) {
+async function promiseAllProps(object: {[key: string]: Promise<any>}) {
   return _zipObject(_keys(object), await Promise.all(_values(object)))
 }
 

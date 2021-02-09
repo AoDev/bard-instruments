@@ -15,7 +15,7 @@ interface promiseMap {
  * @param {PromiseMap} object - {'one': Promise1, 'two': Promise2}
  * @returns {Promise<PromiseMap>} - {'one': ResolvedPromise1, 'two': RejectedPromise2}
  */
-async function promiseAllPropsResults (object: promiseMap) {
+async function promiseAllPropsResults(object: promiseMap) {
   return _zipObject(_keys(object), await promiseAllResults(_values(object)))
 }
 

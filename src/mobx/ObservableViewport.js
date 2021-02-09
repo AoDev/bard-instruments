@@ -16,7 +16,7 @@ const {observable, action} = mobx
  * Now you can easily implement responsive / progressive features in your UI components.
  */
 class ObservableViewport {
-  static getViewPortSize () {
+  static getViewPortSize() {
     return {
       width: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
       height: Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
@@ -25,15 +25,15 @@ class ObservableViewport {
 
   size = ObservableViewport.getViewPortSize()
 
-  updateViewportSize () {
+  updateViewportSize() {
     this.size = ObservableViewport.getViewPortSize()
   }
 
-  destroy () {
+  destroy() {
     window.removeEventListener('resize', this.throttledUpdateViewportSize)
   }
 
-  constructor () {
+  constructor() {
     // Track viewport dimensions
     this.throttledUpdateViewportSize = throttle(this.updateViewportSize, 250, {
       leading: false,

@@ -9,7 +9,7 @@ interface dictionnary {
  * @param {*} options
  * @param {Boolean} options.prepend - influence CSS priority. Add it as first/last element of <head>
  */
-function injectCSS (id: string, css: string, options: dictionnary = {prepend: true}) : void {
+function injectCSS(id: string, css: string, options: dictionnary = {prepend: true}): void {
   const head = document.querySelector('head')
   const styleId = `#style-${id}`
   const styleElement = document.getElementById(styleId)
@@ -17,8 +17,7 @@ function injectCSS (id: string, css: string, options: dictionnary = {prepend: tr
   if (styleElement) {
     // replace content
     styleElement.textContent = css
-  }
-  else {
+  } else {
     // new element
     const newStyle = document.createElement('style')
     newStyle.setAttribute('type', 'text/css')
@@ -27,8 +26,7 @@ function injectCSS (id: string, css: string, options: dictionnary = {prepend: tr
 
     if (options.prepend) {
       head.insertBefore(newStyle, head.childNodes[0])
-    }
-    else {
+    } else {
       head.appendChild(newStyle)
     }
   }

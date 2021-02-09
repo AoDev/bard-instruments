@@ -2,7 +2,9 @@ const ONE_MINUTE = 60000
 const ONE_HOUR = 3600000
 const ONE_DAY = 86400000
 
-const timeUnits: {[key in 's'|'second'|'m'|'minute'|'h'|'hour'|'d'|'day'|'w'|'week']: number} = {
+const timeUnits: {
+  [key in 's' | 'second' | 'm' | 'minute' | 'h' | 'hour' | 'd' | 'day' | 'w' | 'week']: number
+} = {
   s: 1000,
   second: 1000,
   m: 60000,
@@ -16,9 +18,9 @@ const timeUnits: {[key in 's'|'second'|'m'|'minute'|'h'|'hour'|'d'|'day'|'w'|'we
 }
 
 interface timeDistance {
-  hours: number,
-  minutes: number,
-  seconds: number,
+  hours: number
+  minutes: number
+  seconds: number
 }
 
 /**
@@ -27,7 +29,7 @@ interface timeDistance {
  * @param {Number} toTime timestamp (in ms)
  * @returns {timeDistance}
  */
-function timeBetween (fromTime: number, toTime: number) : timeDistance {
+function timeBetween(fromTime: number, toTime: number): timeDistance {
   let _fromTime = fromTime
   let _toTime = toTime
   if (fromTime < toTime) {
@@ -37,8 +39,8 @@ function timeBetween (fromTime: number, toTime: number) : timeDistance {
   const inSeconds = Math.floor((_fromTime - _toTime) / 1000)
   return {
     hours: Math.floor(inSeconds / 3600),
-    minutes: Math.floor(inSeconds % 3600 / 60),
-    seconds: Math.floor(inSeconds % 3600 % 60),
+    minutes: Math.floor((inSeconds % 3600) / 60),
+    seconds: Math.floor((inSeconds % 3600) % 60),
   }
 }
 
@@ -46,7 +48,7 @@ function timeBetween (fromTime: number, toTime: number) : timeDistance {
  * @param {number} timestampInMs
  * @returns {number}
  */
-function roundToNearestSecond (timestampInMs: number) : number {
+function roundToNearestSecond(timestampInMs: number): number {
   return Math.round(timestampInMs / 1000) * 1000
 }
 
@@ -54,22 +56,15 @@ function roundToNearestSecond (timestampInMs: number) : number {
  * Same as Date.now(), but rounded to entire second.
  * @returns {number}
  */
-function nowRounded (): number {
+function nowRounded(): number {
   return roundToNearestSecond(Date.now())
-}
-
-/**
- * @returns {number} next hour timestamp
- */
-function nextHourTimestamp (): number {
-  return roundToInterval1h(Date.now() + ONE_HOUR)
 }
 
 /**
  * @param {number} timestamp
  * @param {number} intervalInMs
  */
-function roundTimeToInterval (timestamp: number, intervalInMs: number): number {
+function roundTimeToInterval(timestamp: number, intervalInMs: number): number {
   return timestamp - (timestamp % intervalInMs)
 }
 
@@ -77,7 +72,7 @@ function roundTimeToInterval (timestamp: number, intervalInMs: number): number {
  * @param {number} timestamp
  * @returns {number}
  */
-function roundToInterval1s (timestamp: number): number {
+function roundToInterval1s(timestamp: number): number {
   return timestamp - (timestamp % 1000)
 }
 
@@ -85,7 +80,7 @@ function roundToInterval1s (timestamp: number): number {
  * @param {number} timestamp
  * @returns {number}
  */
-function roundToInterval5s (timestamp: number): number {
+function roundToInterval5s(timestamp: number): number {
   return timestamp - (timestamp % 5000)
 }
 
@@ -93,7 +88,7 @@ function roundToInterval5s (timestamp: number): number {
  * @param {number} timestamp
  * @returns {number}
  */
-function roundToInterval10s (timestamp: number): number {
+function roundToInterval10s(timestamp: number): number {
   return timestamp - (timestamp % 10000)
 }
 
@@ -101,7 +96,7 @@ function roundToInterval10s (timestamp: number): number {
  * @param {number} timestamp
  * @returns {number}
  */
-function roundToInterval30s (timestamp: number): number {
+function roundToInterval30s(timestamp: number): number {
   return timestamp - (timestamp % 30000)
 }
 
@@ -109,7 +104,7 @@ function roundToInterval30s (timestamp: number): number {
  * @param {number} timestamp
  * @returns {number}
  */
-function roundToInterval1m (timestamp: number): number {
+function roundToInterval1m(timestamp: number): number {
   return timestamp - (timestamp % 60000)
 }
 
@@ -117,7 +112,7 @@ function roundToInterval1m (timestamp: number): number {
  * @param {number} timestamp
  * @returns {number}
  */
-function roundToInterval5m (timestamp: number): number {
+function roundToInterval5m(timestamp: number): number {
   return timestamp - (timestamp % 300000)
 }
 
@@ -125,7 +120,7 @@ function roundToInterval5m (timestamp: number): number {
  * @param {number} timestamp
  * @returns {number}
  */
-function roundToInterval15m (timestamp: number): number {
+function roundToInterval15m(timestamp: number): number {
   return timestamp - (timestamp % 900000)
 }
 
@@ -133,7 +128,7 @@ function roundToInterval15m (timestamp: number): number {
  * @param {number} timestamp
  * @returns {number}
  */
-function roundToInterval1h (timestamp: number): number {
+function roundToInterval1h(timestamp: number): number {
   return timestamp - (timestamp % ONE_HOUR)
 }
 
@@ -141,7 +136,7 @@ function roundToInterval1h (timestamp: number): number {
  * @param {number} timestamp
  * @returns {number}
  */
-function roundToInterval4h (timestamp: number): number {
+function roundToInterval4h(timestamp: number): number {
   return timestamp - (timestamp % 14400000)
 }
 
@@ -149,8 +144,15 @@ function roundToInterval4h (timestamp: number): number {
  * @param {number} timestamp
  * @returns {number}
  */
-function roundToInterval1d (timestamp: number): number {
+function roundToInterval1d(timestamp: number): number {
   return timestamp - (timestamp % ONE_DAY)
+}
+
+/**
+ * @returns {number} next hour timestamp
+ */
+function nextHourTimestamp(): number {
+  return roundToInterval1h(Date.now() + ONE_HOUR)
 }
 
 // indexed helper

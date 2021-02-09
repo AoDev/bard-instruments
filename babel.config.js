@@ -1,62 +1,56 @@
 module.exports = {
-  'plugins': [
-    [
-      '@babel/plugin-proposal-decorators',
-      {
-        'legacy': true
-      }
-    ],
+  plugins: [
     [
       '@babel/plugin-proposal-class-properties',
       {
-        'loose': true
-      }
+        loose: true,
+      },
     ],
     [
       '@babel/plugin-proposal-object-rest-spread',
       {
-        'loose': true
-      }
+        loose: true,
+      },
     ],
     [
       'add-module-exports',
       {
-        'addDefaultProperty': true
-      }
+        addDefaultProperty: true,
+      },
     ],
   ],
-  'presets': [
+  presets: [
     [
       '@babel/preset-env',
       {
-        'targets': {
-          'node': 10,
+        targets: {
+          node: 10,
         },
-        'modules': 'commonjs',
-        'useBuiltIns': 'usage',
+        modules: 'commonjs',
+        useBuiltIns: 'usage',
         corejs: 3,
-      }
+      },
     ],
     '@babel/typescript',
-    '@babel/preset-react'
+    '@babel/preset-react',
   ],
-  'env': {
-    'production': {
-      'ignore': ['**/*.spec.js']
+  env: {
+    production: {
+      ignore: ['**/*.spec.js'],
     },
-    'test': {
-      'presets': [
+    test: {
+      presets: [
         [
           '@babel/preset-env',
           {
-            'targets': {
-              'node': 10,
+            targets: {
+              node: 10,
             },
-            'modules': 'commonjs'
-          }
+            modules: 'commonjs',
+          },
         ],
         '@babel/typescript',
-      ]
-    }
-  }
+      ],
+    },
+  },
 }

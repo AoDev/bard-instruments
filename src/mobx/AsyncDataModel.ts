@@ -47,17 +47,15 @@ class AsyncDataModel {
   /**
    * Update async data
    */
-  async fetch (...args: any[]) {
+  async fetch(...args: any[]) {
     this.assign({isUpdating: true, updateError: null})
     try {
       const data = await this.fetchHandler(...args)
       this.assign({data, updatedAt: new Date()})
       return data
-    }
-    catch (error) {
+    } catch (error) {
       this.assign({updateError: error})
-    }
-    finally {
+    } finally {
       this.set('isUpdating', false)
     }
   }
@@ -66,21 +64,21 @@ class AsyncDataModel {
    * @param {String} prop
    * @param {*} value
    */
-  set (prop: string, value: any) {
+  set(prop: string, value: any) {
     this[prop] = value
   }
 
   /**
-   * @param {Object} props
+   * Helper to assign multiple props values through a mobx action.
    */
-  assign (props: object) {
+  public assign(props: {[key: string]: any}) {
     Object.assign(this, props)
   }
 
   /**
    * @param {{data?: *, fetchHandler: () => Promise<any>}} options
    */
-  constructor (options: { data?: any; fetchHandler: (...args: any) => Promise<any> }) {
+  constructor(options: {data?: any; fetchHandler: (...args: any) => Promise<any>}) {
     this.fetchHandler = options.fetchHandler
     this.data = options.data
   }

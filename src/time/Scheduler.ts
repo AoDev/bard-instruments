@@ -1,7 +1,7 @@
 import timeUtils from './timeUtils'
 const {roundTimeToInterval, timeUnits} = timeUtils
 
-type timeUnit = 's'|'second'|'m'|'minute'|'h'|'hour'|'d'|'day'|'w'|'week'
+type timeUnit = 's' | 'second' | 'm' | 'minute' | 'h' | 'hour' | 'd' | 'day' | 'w' | 'week'
 
 export default class Scheduler {
   timer: NodeJS.Timeout
@@ -9,7 +9,7 @@ export default class Scheduler {
   timeValue = 4
   startAt = 0
 
-  start (task: () => Promise<any>) {
+  start(task: () => Promise<any>) {
     const period = this.timeValue * timeUnits[this.timeUnit]
     const currentXh = roundTimeToInterval(Date.now(), period)
     const nextXh = currentXh + period
@@ -21,11 +21,11 @@ export default class Scheduler {
     this.timer = setTimeout(run, delay)
   }
 
-  stop () {
+  stop() {
     clearTimeout(this.timer)
   }
 
-  constructor (config: {timeValue: number, timeUnit: timeUnit}) {
+  constructor(config: {timeValue: number; timeUnit: timeUnit}) {
     Object.assign(this, config)
   }
 }

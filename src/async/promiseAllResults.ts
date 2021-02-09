@@ -5,7 +5,7 @@
  * @param {[Promise]} promises
  * @returns {Promise<[any]>} - [ResolvedPromise1, RejectedPromise2]
  */
-function promiseAllResults (promises: Promise<any>[]) {
+function promiseAllResults(promises: Promise<any>[]) {
   return Promise.all(promises.map((promise) => promise.catch((err) => err)))
 }
 

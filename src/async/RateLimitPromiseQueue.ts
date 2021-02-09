@@ -34,7 +34,7 @@ export default class RateLimitPromiseQueue {
    * @param {() => Promise<T>} task function that returns a promise
    * @returns {Promise<T>}
    */
-  add<T> (task: (...args: any) => Promise<T>): Promise<T> {
+  add<T>(task: (...args: any) => Promise<T>): Promise<T> {
     return new Promise((resolve, reject) => {
       this.jobs.push(() => {
         return task().then(resolve, reject).finally(this._finishJob)
@@ -48,7 +48,7 @@ export default class RateLimitPromiseQueue {
   /**
    * Prepare the queue for next job once job has finished.
    */
-  _finishJob () {
+  _finishJob() {
     this.lastJobFinishedAt = Date.now()
     this.currentJob = null
     this._next()
@@ -57,7 +57,7 @@ export default class RateLimitPromiseQueue {
   /**
    * Run or schedule next job, waiting for minTimeBetweenTasks if necessary.
    */
-  _next () {
+  _next() {
     if (this.jobs.length > 0) {
       const remainingTime = this.minTimeBetweenTasks - (Date.now() - this.lastJobFinishedAt)
       this.currentJob = this.jobs.shift()
@@ -69,7 +69,7 @@ export default class RateLimitPromiseQueue {
    * @param {Object} options
    * @param {Number} options.minTimeBetweenTasks Minimum time that must pass between tasks.
    */
-  constructor (options: {minTimeBetweenTasks?: number} = {}) {
+  constructor(options: {minTimeBetweenTasks?: number} = {}) {
     /**
      * @type {Array.<() => Promise>}
      */
