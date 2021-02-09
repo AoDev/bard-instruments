@@ -69,12 +69,8 @@ function getComponentDisplayName(Component: React.ComponentType<IComponentWithVM
  * import UserFormComponent from './UserFormComponent'
  *
  * class UserFormVM {
- *   @observable name = ''
- *   @observable email = ''
- *
- *   @action.bound set (prop, value) {
- *     this[prop] = value
- *   }
+ *   name = ''
+ *   email = ''
  *
  *   destroyVM () {
  *     // can be optionally defined if cleanup necessary
@@ -82,6 +78,7 @@ function getComponentDisplayName(Component: React.ComponentType<IComponentWithVM
  *
  *   constructor ({rootStore}) {
  *     // do something with rootStore
+ *     mobx.makeAutoObservable(this)
  *   }
  * }
  *
