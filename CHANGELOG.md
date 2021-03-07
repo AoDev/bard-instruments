@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0-beta.0](https://github.com/AoDev/bard-instruments/compare/v3.0.0-alpha.0...v3.0.0-beta.0) (2021-03-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* * Simplify folders by moving withVM to lib/mobx
+Not you need to import from bard-instruments/lib/mobx/withVM
+
+* AsyncDataModel is now called AsyncData
+
+* update to mobx6 + AsyncData + move withVM to mobx folder ([f2f04ab](https://github.com/AoDev/bard-instruments/commit/f2f04abdf7594ba3e9128114dffa9e89b528b464))
+
 ## [3.0.0-alpha.0](https://github.com/AoDev/bard-instruments/compare/v2.1.0...v3.0.0-alpha.0) (2021-02-09)
 
 
