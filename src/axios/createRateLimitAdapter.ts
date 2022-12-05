@@ -1,3 +1,4 @@
+import {AxiosAdapter, AxiosRequestConfig} from 'axios'
 import RateLimitPromiseQueue from '../async/RateLimitPromiseQueue'
 
 /**
@@ -15,13 +16,13 @@ import RateLimitPromiseQueue from '../async/RateLimitPromiseQueue'
  * @param options {minTimeBetweenRequests: 5000}
  */
 export default function createRateLimitAdapter(
-  adapter: any,
+  adapter: AxiosAdapter,
   options: {minTimeBetweenRequests?: number}
-) {
+): AxiosAdapter {
   const minTimeBetweenTasks = options.minTimeBetweenRequests || 0
   const requestQueue = new RateLimitPromiseQueue({minTimeBetweenTasks})
 
-  return function (config: any) {
+  return function (config: AxiosRequestConfig) {
     return requestQueue.add(() => adapter(config))
   }
 }

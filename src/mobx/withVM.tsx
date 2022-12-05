@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import React from 'react'
 import * as mobxReact from 'mobx-react'
+import React, {ComponentType, memo, useEffect, useRef} from 'react'
 
 type Constructable<T> = new (...args: any[]) => T
 
@@ -18,7 +18,7 @@ interface IProviderProps {
  * Tries to determine a Component's name
  * @param {function} Component
  */
-function getComponentDisplayName<T>(Component: React.ComponentType<IComponentWithVMProps<T>>) {
+function getComponentDisplayName<T>(Component: ComponentType<IComponentWithVMProps<T>>) {
   return (
     Component.displayName ||
     Component.name ||
@@ -102,23 +102,22 @@ function getComponentDisplayName<T>(Component: React.ComponentType<IComponentWit
  * @param VM local vm using mobx observables
  */
 export default function withVM<T>(
-  Component: React.ComponentType<IComponentWithVMProps<T>>,
+  Component: ComponentType<IComponentWithVMProps<T>>,
   VM: Constructable<T>
 ) {
-  const ObserverComponent = mobxReact.observer(Component)
-
   const VMProvider = (props: IProviderProps) => {
+    // eslint-disable-next-line
     const {rootStore, ...otherProps} = props
-    const [vm] = React.useState(() => new VM(props))
-    React.useEffect(() => () => {
+    const {current: vm} = useRef(new VM(props))
+    useEffect(() => () => {
       // @ts-ignore
       if (typeof vm.destroyVM === 'function') {
         // @ts-ignore
         vm.destroyVM()
       }
     })
-    return <ObserverComponent vm={vm} {...otherProps} />
+    return <Component vm={vm} {...otherProps} />
   }
   VMProvider.displayName = `${getComponentDisplayName(Component)}WithVM`
-  return mobxReact.inject('rootStore')(React.memo(VMProvider))
+  return mobxReact.inject('rootStore')(memo(VMProvider))
 }

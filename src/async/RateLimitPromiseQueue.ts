@@ -1,5 +1,6 @@
 /**
  * Promise queue that enforces an amount of time that must have passed between each task.
+ *
  * Typical use case: request rate limit to an API.
  *
  * ### Usage
@@ -23,17 +24,11 @@
  ```
  */
 export default class RateLimitPromiseQueue {
-  [k: string]: any
-  currentJob: () => any
+  currentJob: (() => any) | null = null
   jobs: (() => Promise<any>)[]
   lastJobFinishedAt: number
   minTimeBetweenTasks: number
 
-  /**
-   * @template T
-   * @param {() => Promise<T>} task function that returns a promise
-   * @returns {Promise<T>}
-   */
   add<T>(task: (...args: any) => Promise<T>): Promise<T> {
     return new Promise((resolve, reject) => {
       this.jobs.push(() => {
@@ -58,24 +53,17 @@ export default class RateLimitPromiseQueue {
    * Run or schedule next job, waiting for minTimeBetweenTasks if necessary.
    */
   _next() {
-    if (this.jobs.length > 0) {
+    const job = this.jobs.shift()
+    if (job) {
       const remainingTime = this.minTimeBetweenTasks - (Date.now() - this.lastJobFinishedAt)
-      this.currentJob = this.jobs.shift()
+      this.currentJob = job
       setTimeout(this.currentJob, remainingTime > 0 ? remainingTime : 0)
     }
   }
 
-  /**
-   * @param {Object} options
-   * @param {Number} options.minTimeBetweenTasks Minimum time that must pass between tasks.
-   */
-  constructor(options: {minTimeBetweenTasks?: number} = {}) {
-    /**
-     * @type {Array.<() => Promise>}
-     */
+  constructor(options: {minTimeBetweenTasks: number}) {
     this.jobs = []
-    this.currentJob = null
-    this.minTimeBetweenTasks = options.minTimeBetweenTasks || 0
+    this.minTimeBetweenTasks = options.minTimeBetweenTasks
     this.lastJobFinishedAt = Date.now() - options.minTimeBetweenTasks
     this._finishJob = this._finishJob.bind(this)
   }

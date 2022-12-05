@@ -1,18 +1,6 @@
 module.exports = {
   plugins: [
     [
-      '@babel/plugin-proposal-class-properties',
-      {
-        loose: true,
-      },
-    ],
-    [
-      '@babel/plugin-proposal-object-rest-spread',
-      {
-        loose: true,
-      },
-    ],
-    [
       'add-module-exports',
       {
         addDefaultProperty: true,
@@ -23,9 +11,7 @@ module.exports = {
     [
       '@babel/preset-env',
       {
-        targets: {
-          node: 10,
-        },
+        targets: {node: '16'},
         modules: 'commonjs',
         useBuiltIns: 'usage',
         corejs: 3,
@@ -44,7 +30,7 @@ module.exports = {
           '@babel/preset-env',
           {
             targets: {
-              node: 10,
+              node: 16,
             },
             modules: 'commonjs',
           },

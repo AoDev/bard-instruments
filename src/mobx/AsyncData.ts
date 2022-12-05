@@ -1,11 +1,18 @@
 import * as mobx from 'mobx'
 
-type AsyncDataProp = 'pending' | 'value' | 'lastUpdated' | 'error' | 'fetchHandler'
+export interface IAsyncDataProps<T> {
+  pending: boolean
+  loaded: boolean
+  value: T
+  lastUpdated: number
+  lastAttempt: number
+  error: Error | null
+}
 
 /**
  * Observable model of typical asynchronous data state
  *
- * Observable properties: `pending`,`data`, `lastUpdated`, `error`
+ * Observable properties: `pending`, `loaded`, `value`, `lastUpdated`, `lastAttempt` `error`
  *
  * ### Usage example
  * Provide your model to a view, like a React component and manage the model in a store.
@@ -15,45 +22,48 @@ type AsyncDataProp = 'pending' | 'value' | 'lastUpdated' | 'error' | 'fetchHandl
  import myNewsApi from 'myNewsApi'
 
  class NewsStore {
-   news = new AsyncData({
-     data: [],
-     fetchHandler: () => myNewsApi.fetchNews()
-   })
+   news = new AsyncData<INews[]>([], myNewsApi.fetchNews)
  }
 
  // React component (pseudo code)
- function NewsComponent (props) {
-   const {news} = props
+ function NewsComponent ({news}: {news: INews}) {
    return (
      <div>
        <button onclick={news.fetch}>Update news</button>
        {news.pending && <p>Loading...</p>}
        {news.error && <p>Error</p>}
-       {news.data.map((item) => <h3>{item.title}</h3>)}
+       {news.value.map((item) => <h3>{item.title}</h3>)}
      </div>
    )
  }
  ```
  */
-export default class AsyncData<T> {
+
+export default class AsyncData<T> implements IAsyncDataProps<T> {
   pending = false
-  value: T = null
+  loaded = false
+  value: T
   lastUpdated = 0
   lastAttempt = 0
-  error: Error = null
-  fetchHandler: (...args: any) => Promise<T>
+  error: Error | null = null
+  private readonly initialValue: T
+  private readonly fetchHandler: (...args: any) => Promise<T>
+  private readonly onError: (err: Error) => void
+  static defaultErrorHandler(error: Error) {
+    console.error(error)
+  }
 
   /**
    * Helper to set values through mobx actions.
    */
-  public set(prop: AsyncDataProp, value: any) {
+  public set(prop: keyof IAsyncDataProps<T>, value: any) {
     ;(this[prop] as any) = value
   }
 
   /**
    * Helper to assign multiple props values through a mobx action.
    */
-  public assign(props: {[key: string]: any}) {
+  public assign(props: Partial<IAsyncDataProps<T>>) {
     Object.assign(this, props)
   }
 
@@ -68,18 +78,37 @@ export default class AsyncData<T> {
       this.assign({value, lastUpdated: now})
       return value
     } catch (error) {
+      this.onError?.(error)
       this.set('error', error)
     } finally {
       this.assign({pending: false, lastAttempt: now})
+      this.set('loaded', true)
     }
   }
 
   /**
-   * @param {{value?: *, fetchHandler: () => Promise<any>}} options
+   * Reset observable state to initial state
    */
-  constructor(options: {value?: T; fetchHandler: (...args: any) => Promise<T>}) {
-    this.fetchHandler = options.fetchHandler
-    this.value = options.value
+  reset() {
+    this.assign({
+      error: null,
+      loaded: false,
+      value: this.initialValue,
+      pending: false,
+      lastAttempt: 0,
+      lastUpdated: 0,
+    })
+  }
+
+  constructor(
+    initialValue: T,
+    fetchHandler: (...args: any) => Promise<T>,
+    onError?: (error: Error) => void
+  ) {
+    this.fetchHandler = fetchHandler
+    this.value = initialValue
+    this.initialValue = initialValue
+    this.onError = onError ?? AsyncData.defaultErrorHandler
     mobx.makeAutoObservable(this, undefined, {deep: false, autoBind: true})
   }
 }
